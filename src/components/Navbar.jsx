@@ -1,16 +1,33 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useContext, useState } from 'react'
+import { NavLink, useNavigate } from 'react-router-dom'
+import useTheme from '../hooks/useTheme';
+
 
 const Navbar = () => {
+  let [search, setSearch] = useState('');
+  let navigate = useNavigate();
+
+  let handleSearch = (e) => {
+    e.preventDefault();
+    navigate('/?title='+search);    
+  }
+
+  let {theme} = useTheme();
+  
   return (
-        <nav className='border border-b-1'>
+        <nav className={`border border-b-1 ${theme == 'dark' ? 'bg-blue-100' : 'bg-yellow-200'}`}>
             <ul className='flex justify-between p-3 items-center max-w-6xl mx-auto'>
                 <li className='flex items-center gap-3'>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                   <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                 </svg>
 
-                  <input type="text" placeholder='search books..' className='outline-none'/>
+                <input type="text" placeholder='search books..' onChange={ e => setSearch(e.target.value)} className='outline-none'/>
+                <button onClick={ handleSearch }  className='bg-primary text-white bg-primary px-3 py-1 rounded-2xl flex items-center gap-1'>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                </svg>
+                </button>
                 </li>
                 <NavLink to='/' className='flex items-center gap-3 md:-ml-32 cursor-pointer'>
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">

@@ -5,6 +5,7 @@ import Home from '../pages/Home.jsx'
 import Layout from "../pages/layouts/Layout.jsx";
 import Create from "../pages/Create.jsx";
 import Search from "../pages/Search.jsx";
+import BookDetail from "../components/BookDetail.jsx";
 
 const router = createBrowserRouter([
 {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <Home />
+      },
+      {
+        path: "/books/:id",
+        element: <BookDetail />
       },
       {
         path: "/create",

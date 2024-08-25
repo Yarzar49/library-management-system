@@ -4,8 +4,11 @@ import {
 } from "react-router-dom";
 import './index.css'
 import router from './router';
+import { ThemeContextProvider } from './contexts/ThemeContext';
 
 
 createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router} />
+  <ThemeContextProvider>
+      <RouterProvider router={router} />
+  </ThemeContextProvider>
 )
